@@ -1,13 +1,26 @@
-package web.collection.vo;
+package com.collection.vo;
 import java.sql.Date;
 
-public class CollectionVO implements java.io.Serializable{
+import comment.Result;
+
+public class CollectionVO extends Result{
 	private Integer collectionID;
 	private String collectionText;
 	private String collectionMaterial;
 	private Date lastUpdateTime;
 	private Boolean collectionStatus;
 	
+	public CollectionVO() {
+	}
+	
+	
+	public CollectionVO(Integer collectionID, String collectionText, String collectionMaterial, Date lastUpdateTime, Boolean collectionStatus) {
+		this.collectionID = collectionID;
+		this.collectionText = collectionText;
+		this.collectionMaterial = collectionMaterial;
+		this.lastUpdateTime = lastUpdateTime;
+		this.collectionStatus = collectionStatus;
+	}
 	
 	public Integer getCollectionID() {
 		return collectionID;

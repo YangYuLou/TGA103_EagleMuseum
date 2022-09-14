@@ -1,4 +1,4 @@
-package web.collection.dao.intf;
+package com2.collection.model;
 
 import java.util.*;
 

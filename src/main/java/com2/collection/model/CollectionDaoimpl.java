@@ -1,4 +1,4 @@
-package web.collection.dao.impl;
+package com2.collection.model;
 
 import java.util.*;
 import java.sql.*;
