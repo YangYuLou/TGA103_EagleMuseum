@@ -11,9 +11,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.mysql.cj.jdbc.AbandonedConnectionCleanupThread;
+import com.prod.common.Result;
 import com.prod.service.impl.ProductServicelm;
+import com.prod.vo.productVO;
 
-@WebServlet("/product")
+@WebServlet("/Product")
 public class ProductController extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
@@ -23,7 +26,8 @@ public class ProductController extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws  ServletException,IOException  {
 		setHeaders(response);
 		try {
-			response.getWriter().print(gson.toJson(service.getAll()));
+			Result abc = service.getAll();
+			response.getWriter().print(gson.toJson(abc));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

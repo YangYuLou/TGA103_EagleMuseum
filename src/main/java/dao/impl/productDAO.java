@@ -7,18 +7,17 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.prod.service.intf.productDAO_interface;
 import com.prod.vo.productVO;
 import com.prod.dao.sql.*;
 
-public class productDAO implements productDAO_interface {
+public class productDAO implements com.prod.dao.intf.productDAO_interface {
 	
 	//獲取DS使用連線池
 		private static DataSource ds = null;
 		static {
 			try {
 				Context ctx = new InitialContext();
-				ds = (DataSource) ctx.lookup("java:comp/env/jdbc/eagleMuseum_schema");
+				ds = (DataSource) ctx.lookup("java:comp/env/jdbc/eaglemuseum_schema");
 			} catch (NamingException e) {
 				e.printStackTrace();
 			}

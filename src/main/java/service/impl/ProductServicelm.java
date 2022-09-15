@@ -2,6 +2,7 @@ package com.prod.service.impl;
 
 import com.prod.common.Result;
 import com.prod.dao.impl.productDAO;
+import com.prod.service.inft.ProductServicein;
 import com.prod.vo.productVO;
 
 public class ProductServicelm implements ProductServicein {
@@ -34,15 +35,6 @@ public class ProductServicelm implements ProductServicein {
 		}
 	}
 
-	@Override
-	public Result inserr(productVO productVO) {
-		try {
-			return R.success(DAO.getAll());
-		} catch (Exception e) {
-			e.printStackTrace();
-			return R.fail(e.toString());
-		}
-	}
 
 	@Override
 	public Result update(productVO productVO) {
@@ -52,6 +44,12 @@ public class ProductServicelm implements ProductServicein {
 			e.printStackTrace();
 			return R.fail(e.toString());
 		}
+	}
+
+	@Override
+	public Result insert(productVO productVO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

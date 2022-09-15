@@ -2,7 +2,7 @@ package com.prod.dao.sql;
 
 public class ProductSQL {
 	//全部查詢
-	public static final String GET_ALL = "SELECT * FROM eagle_museum.productlist";
+	public static final String GET_ALL = "SELECT * FROM productlist";
 	
 	//商品名稱查詢
 	public static final String GET_BY_Name = "SELECT * FROM eagle_museum.productlist where prodName = ?";

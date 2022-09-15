@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<Context>
+	<Resource auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" maxIdle="10" maxTotal="20" maxWaitMillis="-1" name="jdbc/eaglemuseum_schema" password="19520789" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/eaglemuseum_schema?serverTimezone=Asia/Taipei" username="root"/>
+</Context>
