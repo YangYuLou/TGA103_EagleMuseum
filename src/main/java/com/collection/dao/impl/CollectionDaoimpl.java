@@ -47,7 +47,7 @@ public class CollectionDaoimpl implements CollectionDaointf {
 			e.printStackTrace();
 		}
 		return rowCount != 0;
-		
+
 	}
 
 	@Override
@@ -65,19 +65,19 @@ public class CollectionDaoimpl implements CollectionDaointf {
 			pstmt.setString(1, collectionVO.getCollectionText());
 			pstmt.setBoolean(2, collectionVO.getCollectionStatus());
 			pstmt.setString(3, collectionVO.getCollectionMaterial());
-			
+
 			rowCount = pstmt.executeUpdate();
-			
+
 			// Handle any SQL errors
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return rowCount != 0;
-		
+
 	}
 
 	@Override
-	public boolean delete(Integer collectionVO) {
+	public boolean delete(Integer collectionID) {
 		int rowCount = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -87,7 +87,7 @@ public class CollectionDaoimpl implements CollectionDaointf {
 			pstmt = con.prepareStatement(SQL.DELETE);
 			System.out.println("連線成功");
 
-			pstmt.setInt(1, collectionVO);
+			pstmt.setInt(1, collectionID);
 			rowCount = pstmt.executeUpdate();
 			// Handle any SQL errors
 		} catch (SQLException e) {
@@ -104,8 +104,26 @@ public class CollectionDaoimpl implements CollectionDaointf {
 
 	@Override
 	public List<CollectionVO> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<CollectionVO> list = new ArrayList<CollectionVO>();
+		CollectionVO collection = null;
+
+		try (Connection con = ds.getConnection();
+			 PreparedStatement pstm = con.prepareStatement(SQL.GET_ALL);) {
+			System.out.println("連線成功");
+			try (ResultSet rs = pstm.executeQuery()) {
+				while(rs.next()) {
+					collection = new CollectionVO();
+					collection.setCollectionID(rs.getInt("collectionID"));
+					collection.setCollectionText(rs.getString("collectionText"));
+					collection.setCollectionMaterial(rs.getString("collectionMaterial"));
+					collection.setCollectionStatus(rs.getBoolean("collectionStatus"));
+					collection.setLastUpdateTime(rs.getDate("LastUpdateTime"));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }

@@ -37,15 +37,17 @@ public class CollectionServiceImpl implements CollectionService {
 	
 	@Override
 	public CollectionVO edit(CollectionVO collection) {
-		final CollectionVO oMember = dao.update(collection.getCollectionText());
-		return null;
-	}
-
-	@Override
-	public CollectionVO remove(Integer collection) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		if(dao.update(collection) == false ) {
+			collection.setMessage("資料更改出現錯誤，請聯絡管理員!");
+			collection.setSuccessful(false);
+		 	return collection;
+		}
+//	 	mem = dao.selectByUsername(mem.getMemUsername());
+		
+		collection.setMessage("資料更改成功");
+		collection.setSuccessful(true);
+	 	return collection;
+		}
 
 	@Override
 	public CollectionVO findByPrimaryKey(Integer collectionVO) {
@@ -54,8 +56,7 @@ public class CollectionServiceImpl implements CollectionService {
 	}
 
 	@Override
-	public List<CollectionVO> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public List<CollectionVO> getAll() {
+		return dao.getAll();	
+		}
 }

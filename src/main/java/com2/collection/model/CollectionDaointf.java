@@ -2,7 +2,7 @@ package com2.collection.model;
 
 import java.util.*;
 
-import web.collection.vo.CollectionVO;
+import com2.collection.model.CollectionVO;
 
 public interface CollectionDaointf {
           public boolean insert(CollectionVO collectionVO);

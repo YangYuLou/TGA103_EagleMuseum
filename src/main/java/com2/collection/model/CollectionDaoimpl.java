@@ -8,9 +8,9 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import web.collection.dao.intf.CollectionDaointf;
-import web.collection.dao.sql.collectDaoSQL;
-import web.collection.vo.CollectionVO;
+import com2.collection.model.CollectionDaointf;
+import com2.collection.model.collectDaoSQL;
+import com2.collection.model.CollectionVO;
 
 public class CollectionDaoimpl implements CollectionDaointf {
 
