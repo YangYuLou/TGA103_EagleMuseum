@@ -1,5 +1,6 @@
 package com.collection.controller;
 
+import java.awt.print.Printable;
 import java.io.IOException;
 import java.net.http.HttpResponse;
 import java.util.List;
@@ -16,32 +17,32 @@ import com.collection.serverice.CollectionService;
 import com.collection.serverice.CollectionServiceImpl.CollectionServiceImpl;
 import com.collection.vo.CollectionVO;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import comment.Result;
 
-
-@WebServlet("/collection/collectionAll")
-public class EditServlet extends HttpServlet {
+@WebServlet("/collectionAll")
+public class FindAllServlet extends HttpServlet {
 	private static final long serialVersionUID = 1;
 	private CollectionService service = new CollectionServiceImpl();
-	private Gson gson = new Gson();
+	private Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd HH:mm:ss").create();
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
 		try {
-			List<CollectionVO> r = service.getAll();
-			response.getWriter().print(gson.toJson(r));
+			List<CollectionVO> findCollectuins = service.getAll();
+			response.getWriter().print(gson.toJson(findCollectuins));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		setHeaders(response);
-		
-		
-		
+
 	}
 
 	private void setHeaders(HttpServletResponse response) {
@@ -53,7 +54,7 @@ public class EditServlet extends HttpServlet {
 		response.addHeader("Access-Control-Allow-Origin", "*"); // 重要
 		response.addHeader("Access-Control-Allow-Methods", "*");
 		response.addHeader("Access-Control-Allow-Headers", "*");
-		response.addHeader("Access-Control-Max-Age", "86400");		
+		response.addHeader("Access-Control-Max-Age", "86400");
 	}
-	
+
 }

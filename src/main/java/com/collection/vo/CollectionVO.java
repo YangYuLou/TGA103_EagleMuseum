@@ -1,5 +1,6 @@
 package com.collection.vo;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import comment.Result;
 
@@ -7,14 +8,14 @@ public class CollectionVO extends Result{
 	private Integer collectionID;
 	private String collectionText;
 	private String collectionMaterial;
-	private Date lastUpdateTime;
+	private Timestamp lastUpdateTime;
 	private Boolean collectionStatus;
 	
 	public CollectionVO() {
 	}
 	
 	
-	public CollectionVO(Integer collectionID, String collectionText, String collectionMaterial, Date lastUpdateTime, Boolean collectionStatus) {
+	public CollectionVO(Integer collectionID, String collectionText, String collectionMaterial, Timestamp lastUpdateTime, Boolean collectionStatus) {
 		this.collectionID = collectionID;
 		this.collectionText = collectionText;
 		this.collectionMaterial = collectionMaterial;
@@ -34,10 +35,10 @@ public class CollectionVO extends Result{
 	public void setCollectionText(String collectionText) {
 		this.collectionText = collectionText;
 	}
-	public Date getLastUpdateTime() {
+	public Timestamp getLastUpdateTime() {
 		return lastUpdateTime;
 	}
-	public void setLastUpdateTime(Date lastUpdateTime) {
+	public void setLastUpdateTime(Timestamp lastUpdateTime) {
 		this.lastUpdateTime = lastUpdateTime;
 	}
 	public Boolean getCollectionStatus() {

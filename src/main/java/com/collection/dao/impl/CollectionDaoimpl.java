@@ -20,7 +20,7 @@ public class CollectionDaoimpl implements CollectionDaointf {
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/EagleMuseum");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/eagleMuseum_schema");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -105,19 +105,20 @@ public class CollectionDaoimpl implements CollectionDaointf {
 	@Override
 	public List<CollectionVO> getAll() {
 		List<CollectionVO> list = new ArrayList<CollectionVO>();
-		CollectionVO collection = null;
 
 		try (Connection con = ds.getConnection();
 			 PreparedStatement pstm = con.prepareStatement(SQL.GET_ALL);) {
 			System.out.println("連線成功");
+
 			try (ResultSet rs = pstm.executeQuery()) {
 				while(rs.next()) {
-					collection = new CollectionVO();
+					CollectionVO collection = new CollectionVO();
 					collection.setCollectionID(rs.getInt("collectionID"));
 					collection.setCollectionText(rs.getString("collectionText"));
 					collection.setCollectionMaterial(rs.getString("collectionMaterial"));
 					collection.setCollectionStatus(rs.getBoolean("collectionStatus"));
-					collection.setLastUpdateTime(rs.getDate("LastUpdateTime"));
+					collection.setLastUpdateTime(rs.getTimestamp("LastUpdateTime"));
+					list.add(collection);
 				}
 			}
 		} catch (SQLException e) {
