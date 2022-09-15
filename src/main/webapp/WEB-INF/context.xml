@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiResourceLocking="false" crossContext="true" privileged="true" reloadable="true">
-<Resource auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" maxIdle="10" maxTotal="20" maxWaitMillis="-1" name="jdbc/EagleMuseum" password="Aa123456" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/EagleMuseum?serverTimezone=Asia/Taipei" username="root"/>
+<Resource auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" maxIdle="10" maxTotal="20" maxWaitMillis="-1" name="jdbc/eagleMuseum_schema" password="Aa123456" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/EagleMuseum?serverTimezone=Asia/Taipei" username="root"/>
 <WatchedResource>WEB-INF/web.xml</WatchedResource>
 <WatchedResource>WEB-INF/tomcat-web.xml</WatchedResource>
 <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource>
