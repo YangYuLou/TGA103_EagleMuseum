@@ -11,7 +11,15 @@
 
 	<h1>Hello</h1>
 	<form action="questionContent" method="POST">
-		<input type="text" id="questionTypeID" name="questionTypeID">
+		<!-- <input type="text" id="questionTypeID" name="questionTypeID"> -->
+		<select name="questionTypeID">
+			<option value = 1>交通問題</option>
+			<option value = 2>展覽問題</option>
+			<option value = 3>商品問題</option>
+			<option value = 4>失物問題</option>
+			<option value = 5>會員問題</option>
+			<option value = 6>其他</option>
+		</select>
 		<br>
 		<textarea id="questionContent" name="questionContent"></textarea>
 		<input type="submit">
