@@ -41,10 +41,19 @@ public class QuestionAnsServlet extends HttpServlet{
 		//第一次進入此頁，使用者尚未選擇memberId，故先不進行字串轉Int
 		Integer memberId = null;
 		if(!StringUtils.isNullOrEmpty(memberIdStr)) {
+			
 			memberId = Integer.parseInt(memberIdStr);
 			final List<QuestionContentVO> list = service.getByMemberId(memberId);
 			req.setAttribute("questionList", list);
-		}
+			
+		} else if (StringUtils.isNullOrEmpty(memberIdStr)) {
+			
+			final List<QuestionContentVO> list = service.findAllQs();
+			req.setAttribute("questionList", list);
+			
+		} 
+		
+		
 		
 		req.getRequestDispatcher("/questionAnswer.jsp").forward(req, resp);
 	}
