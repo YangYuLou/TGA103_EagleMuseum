@@ -11,6 +11,12 @@ public class QuestionContentServiceImpl implements QuestionContentService {
 	public QuestionContentServiceImpl() throws NamingException{
 		dao = new QuestionContentDaoImpl();
 	}
+	
+	@Override
+	public Boolean submitAnswer(QuestionContentVO questionContent) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public Boolean submitQuestion(QuestionContentVO questionContent) {
@@ -40,5 +46,12 @@ public class QuestionContentServiceImpl implements QuestionContentService {
 	public List<QuestionContentVO> findAllQs() {	
 		return dao.selectAll();
 	}
+
+	@Override
+	public List<QuestionContentVO> getByMemberId(Integer memberId) {
+		return dao.findByMemberId(memberId);
+	}
+
+	
 
 }// class

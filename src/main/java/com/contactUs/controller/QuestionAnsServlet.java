@@ -13,15 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.contactUs.model.QuestionContentService;
 import com.contactUs.model.QuestionContentServiceImpl;
 import com.contactUs.model.QuestionContentVO;
-
 import com.mysql.cj.util.StringUtils;
 
-@WebServlet("/questionContent")
-public class QuestionContentServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+@WebServlet("/questionAns")
+public class QuestionAnsServlet extends HttpServlet{
 	
 	private QuestionContentService service;
-	
 	
 	public void init() throws ServletException{
 		try {
@@ -31,6 +28,7 @@ public class QuestionContentServlet extends HttpServlet {
 		}
 		super.init();
 	}
+	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		this.doPost(req, resp);
 	}
@@ -39,30 +37,18 @@ public class QuestionContentServlet extends HttpServlet {
 		resp.setContentType("application/json;charset=UTF-8");
 		req.setCharacterEncoding("UTF-8");
 		
-		final String questionTypeIDStr = req.getParameter("questionTypeID");
-		//第一次進入此頁，使用者尚未選擇questionTypeID，故先不進行字串轉Int
-		Integer questionTypeID = null;
-		if(!StringUtils.isNullOrEmpty(questionTypeIDStr)) {
-			questionTypeID = Integer.parseInt(questionTypeIDStr);
-		}
-		final String questionContent = req.getParameter("questionContent");
-		
-		QuestionContentVO quesContent = new QuestionContentVO();
-		quesContent.setQuestionTypeID(questionTypeID);
-		quesContent.setQuestionContent(questionContent);
-		
-		String quesContent1 = quesContent.getQuestionContent();	
-		if(quesContent1 != null) {
-			final boolean result = service.submitQuestion(quesContent);
-			req.setAttribute("result", result? "提問已送出" : "提問失敗");
+		final String memberIdStr = req.getParameter("memberId");
+		//第一次進入此頁，使用者尚未選擇memberId，故先不進行字串轉Int
+		Integer memberId = null;
+		if(!StringUtils.isNullOrEmpty(memberIdStr)) {
+			memberId = Integer.parseInt(memberIdStr);
+			final List<QuestionContentVO> list = service.getByMemberId(memberId);
+			req.setAttribute("questionList", list);
 		}
 		
-		final List<QuestionContentVO> list = service.findAllQs();
-		req.setAttribute("questionList", list);
-		
-		req.getRequestDispatcher("/questionContent.jsp").forward(req, resp);
-		
+		req.getRequestDispatcher("/questionAnswer.jsp").forward(req, resp);
 	}
-	
-	
+
+
+
 }//class

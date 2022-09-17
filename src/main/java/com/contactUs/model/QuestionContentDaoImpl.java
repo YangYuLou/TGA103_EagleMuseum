@@ -3,6 +3,7 @@ package com.contactUs.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,55 @@ public class QuestionContentDaoImpl implements QuestionContentDao {
 
 	public QuestionContentDaoImpl() throws NamingException {
 		dataSource = (DataSource) new InitialContext().lookup("java:comp/env/jdbc/eaglemuseum");
+	}
+	
+	
+	@Override
+	public List<QuestionContentVO> findByMemberId(Integer memberId) {
+		String sql = "select * from questionContent where memberId=? ";
+			
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement pstmt = connection.prepareStatement(sql);
+				) {
+			
+			pstmt.setInt(1, memberId);
+			ResultSet ansrs = pstmt.executeQuery();
+			List<QuestionContentVO> list = new ArrayList<QuestionContentVO>();
+			while (ansrs.next()) {	
+				QuestionContentVO quesCont = new QuestionContentVO();
+				quesCont.setQuestionContentID(ansrs.getInt("questionContentID"));
+				quesCont.setMemberId(ansrs.getInt("memberId"));
+				quesCont.setQuestionTypeID(ansrs.getInt("questionTypeID"));
+				quesCont.setQuestionContent(ansrs.getString("questionContent"));
+				quesCont.setAnswerContent(ansrs.getString("answerContent"));
+				quesCont.setAnswered(ansrs.getBoolean("answered"));
+				quesCont.setLastUpdateTime(ansrs.getDate("lastUpdateTime"));
+				list.add(quesCont);
+			}
+			return list;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	
+	@Override
+	public void insertAns(QuestionContentVO questionContent) {
+		String sql = "insert questionContent(answerContent, answered) "
+				+ "values(?, ?)";
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement pstmt = connection.prepareStatement(sql);) {
+			
+			pstmt.setString(1, questionContent.getAnswerContent());
+			pstmt.setBoolean(2, questionContent.getAnswered());
+			pstmt.executeUpdate();	
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -68,5 +118,9 @@ public class QuestionContentDaoImpl implements QuestionContentDao {
 			return null;
 		}
 	}
+
+	
+
+	
 
 }// class
