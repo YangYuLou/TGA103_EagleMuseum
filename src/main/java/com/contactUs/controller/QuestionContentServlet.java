@@ -1,6 +1,7 @@
 package com.contactUs.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
@@ -19,6 +20,7 @@ public class QuestionContentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private QuestionContentService service;
+	
 	
 	public void init() throws ServletException{
 		try {
@@ -54,9 +56,11 @@ public class QuestionContentServlet extends HttpServlet {
 			req.setAttribute("result", result? "提問已送出" : "提問失敗");
 		}
 		
+		final List<QuestionContentVO> list = service.findAllQs();
+		req.setAttribute("questionList", list);
 		
-//		req.setCharacterEncoding("UTF-8");
 		req.getRequestDispatcher("/questionContent.jsp").forward(req, resp);
+		
 	}
 	
 	
