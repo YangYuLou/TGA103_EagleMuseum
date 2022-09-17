@@ -11,13 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.mysql.cj.jdbc.AbandonedConnectionCleanupThread;
 import com.prod.common.Result;
 import com.prod.service.impl.ProductServicelm;
 import com.prod.vo.productVO;
 
-@WebServlet("/Product")
-public class ProductController extends HttpServlet{
+
+@WebServlet("/ProductGetAll")
+public class ProdgetAllServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	private Gson gson = new Gson();
@@ -26,8 +28,8 @@ public class ProductController extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws  ServletException,IOException  {
 		setHeaders(response);
 		try {
-			Result abc = service.getAll();
-			response.getWriter().print(gson.toJson(abc));
+			Result R  = service.getAll();
+			response.getWriter().print(gson.toJson(R));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,12 +39,18 @@ public class ProductController extends HttpServlet{
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		setHeaders(response);
-		PrintWriter out = response.getWriter();
+		request.setCharacterEncoding("UTF-8");
 		// Read POST
 		BufferedReader read = request.getReader();
 		// 存字串
-		String json = read.readLine();
-		
+		String data = read.readLine();
+		System.out.print(data);
+
+	}
+	
+	protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		setHeaders(resp);
+
 	}
 	
 	/*

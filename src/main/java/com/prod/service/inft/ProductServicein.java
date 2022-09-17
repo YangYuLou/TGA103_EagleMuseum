@@ -7,10 +7,11 @@ public interface ProductServicein {
 	
 	public Result getAll() throws Exception;
 	
-	public Result getByname(String prodName);
+	public Result getByName(String prodName);
 	
 	public Result insert(productVO productVO);
 	
 	public Result update(productVO productVO);
-
+	
+	public Result updateStatus(productVO productVO);
 }

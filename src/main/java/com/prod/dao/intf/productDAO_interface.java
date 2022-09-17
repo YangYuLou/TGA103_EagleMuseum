@@ -8,10 +8,10 @@ import com.prod.vo.productVO;
 public interface productDAO_interface {
 	
 	//新增商品
-	public void insert(productVO productVO) throws Exception;
+	public productVO insert(productVO productVO) throws Exception;
 	
   //更新商品資訊
-    public void update(productVO productVO) throws Exception;
+    public productVO update(productVO productVO) throws Exception;
     
   //查詢商品
     public List<productVO> getAll() throws Exception;
@@ -21,4 +21,7 @@ public interface productDAO_interface {
     
   //根據商品編號搜尋
     public List<productVO> getByProductID(String productID) throws SQLException;
+    
+  //更新商品狀態
+    public Integer updateStatus(productVO productVO) throws Exception;
 }

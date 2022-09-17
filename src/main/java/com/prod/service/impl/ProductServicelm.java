@@ -26,9 +26,10 @@ public class ProductServicelm implements ProductServicein {
 	}
 
 	@Override
-	public Result getByname(String prodName) {
+	public Result getByName(String prodName) {
 		try {
-			return R.success(DAO.getAll());
+			System.out.println(R.success(DAO.getByName(prodName)));
+			return R.success(DAO.getByName(prodName));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return R.fail(e.toString());
@@ -39,7 +40,7 @@ public class ProductServicelm implements ProductServicein {
 	@Override
 	public Result update(productVO productVO) {
 		try {
-			return R.success(DAO.getAll());
+			return R.success(DAO.update(productVO));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return R.fail(e.toString());
@@ -50,6 +51,18 @@ public class ProductServicelm implements ProductServicein {
 	public Result insert(productVO productVO) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Result updateStatus(productVO productVO) {
+		try {
+			System.out.println(R.success(DAO.updateStatus(productVO)));
+//			return R.success(DAO.updateStatus(productVO));
+			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return R.fail(e.toString());
+		}
 	}
 	
 
