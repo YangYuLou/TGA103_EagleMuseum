@@ -1,8 +1,6 @@
 package com.collection.controller;
 
-import java.awt.print.Printable;
 import java.io.IOException;
-import java.net.http.HttpResponse;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,16 +8,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.rowset.serial.SerialException;
 
-import com.collection.dao.intf.CollectionDaointf;
-import com.collection.serverice.CollectionService;
-import com.collection.serverice.CollectionServiceImpl.CollectionServiceImpl;
+import com.collection.service.CollectionService;
+import com.collection.service.CollectionServiceImpl.CollectionServiceImpl;
 import com.collection.vo.CollectionVO;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import comment.Result;
+
 
 @WebServlet("/collectionAll")
 public class FindAllServlet extends HttpServlet {
@@ -30,6 +26,7 @@ public class FindAllServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		setHeaders(response);
 		try {
 			List<CollectionVO> findCollectuins = service.getAll();
 			response.getWriter().print(gson.toJson(findCollectuins));

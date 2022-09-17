@@ -1,10 +1,10 @@
-package com.collection.serverice.CollectionServiceImpl;
+package com.collection.service.CollectionServiceImpl;
 
 import java.util.List;
 
 import com.collection.dao.impl.CollectionDaoimpl;
 import com.collection.dao.intf.CollectionDaointf;
-import com.collection.serverice.CollectionService;
+import com.collection.service.CollectionService;
 import com.collection.vo.CollectionVO;
 
 public class CollectionServiceImpl implements CollectionService {

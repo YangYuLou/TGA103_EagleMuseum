@@ -1,8 +1,6 @@
 package com.tag.controller;
 
-import java.awt.print.Printable;
 import java.io.IOException;
-import java.net.http.HttpResponse;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,16 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.rowset.serial.SerialException;
-
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.tag.serverice.TagService;
-import com.tag.serverice.TagServiceImpl.TagServiceImpl;
+import com.tag.service.TagService;
+import com.tag.service.TagServiceImpl.TagServiceImpl;
 import com.tag.vo.TagVO;
-
-import comment.Result;
 
 @WebServlet("/tagAll")
 public class FindAllServlet extends HttpServlet {
@@ -30,6 +24,7 @@ public class FindAllServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		
 		try {
 			List<TagVO> findTags = service.getAll();
 			response.getWriter().print(gson.toJson(findTags));

@@ -1,4 +1,4 @@
-package com.tag.serverice;
+package com.tag.service;
 
 import java.util.*;
 import com.tag.vo.TagVO;
