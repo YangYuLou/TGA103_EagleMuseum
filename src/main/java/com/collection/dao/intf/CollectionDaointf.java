@@ -8,7 +8,15 @@ public interface CollectionDaointf {
 	public boolean insert(CollectionVO collectionVO);
 	public boolean update(CollectionVO collectionVO);
 	public boolean delete(Integer collectionID);
-	public CollectionVO findByPrimaryKey(Integer collectionVO);
+	
+	CollectionVO findByPrimaryKey(String collectionVO);
+	CollectionVO findByName(String collectionVO);
+	CollectionVO findByMaterial(String collectionVO);
+	CollectionVO findByEar(String collectionVO);
+	CollectionVO findByNameMaterial(String collectionVO);
+	CollectionVO findByNameEar(String collectionVO);
+	CollectionVO findByEarMaterial(String collectionVO);
+	CollectionVO findByNEM(String collectionVO);
+
 	public List<CollectionVO> getAll();
-//        public List<EmpVO> getAll(Map<String, String[]> map); 
 }

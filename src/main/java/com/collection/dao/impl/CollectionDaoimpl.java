@@ -39,8 +39,11 @@ public class CollectionDaoimpl implements CollectionDaointf {
 			pstmt = con.prepareStatement(SQL.INSERT_STMT);
 			System.out.println("連線成功");
 
-			pstmt.setString(1, collectionVO.getCollectionText());
-			pstmt.setString(2, collectionVO.getCollectionMaterial());
+			pstmt.setString(1, collectionVO.getCollectionTitle());
+			pstmt.setString(2, collectionVO.getCollectionEar());
+			pstmt.setString(3, collectionVO.getCollectionText());
+			pstmt.setString(4, collectionVO.getCollectionMaterial());
+			pstmt.setBoolean(5, collectionVO.getCollectionStatus());
 			rowCount = pstmt.executeUpdate();
 			// Handle any SQL errors
 		} catch (SQLException e) {
@@ -96,11 +99,6 @@ public class CollectionDaoimpl implements CollectionDaointf {
 		return rowCount != 0;
 	}
 
-	@Override
-	public CollectionVO findByPrimaryKey(Integer collectionVO) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<CollectionVO> getAll() {
@@ -125,6 +123,54 @@ public class CollectionDaoimpl implements CollectionDaointf {
 			e.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	public CollectionVO findByPrimaryKey(String collectionVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CollectionVO findByName(String collectionVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CollectionVO findByMaterial(String collectionVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CollectionVO findByEar(String collectionVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CollectionVO findByNameMaterial(String collectionVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CollectionVO findByNameEar(String collectionVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CollectionVO findByEarMaterial(String collectionVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CollectionVO findByNEM(String collectionVO) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

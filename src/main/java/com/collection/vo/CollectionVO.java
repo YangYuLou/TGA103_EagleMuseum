@@ -6,6 +6,8 @@ import comment.Result;
 
 public class CollectionVO extends Result{
 	private Integer collectionID;
+	private String collectionTitle;
+	private String collectionEar;	
 	private String collectionText;
 	private String collectionMaterial;
 	private Timestamp lastUpdateTime;
@@ -15,8 +17,10 @@ public class CollectionVO extends Result{
 	}
 	
 	
-	public CollectionVO(Integer collectionID, String collectionText, String collectionMaterial, Timestamp lastUpdateTime, Boolean collectionStatus) {
+	public CollectionVO(Integer collectionID, String collectionTitle, String collectionEar, String collectionText, String collectionMaterial, Timestamp lastUpdateTime, Boolean collectionStatus) {
 		this.collectionID = collectionID;
+		this.collectionTitle = collectionTitle;
+		this.collectionEar = collectionEar;
 		this.collectionText = collectionText;
 		this.collectionMaterial = collectionMaterial;
 		this.lastUpdateTime = lastUpdateTime;
@@ -52,6 +56,26 @@ public class CollectionVO extends Result{
 	}
 	public void setCollectionMaterial(String collectionMaterial) {
 		this.collectionMaterial = collectionMaterial;
+	}
+
+
+	public String getCollectionTitle() {
+		return collectionTitle;
+	}
+
+
+	public void setCollectionTitle(String collectionTitle) {
+		this.collectionTitle = collectionTitle;
+	}
+
+
+	public String getCollectionEar() {
+		return collectionEar;
+	}
+
+
+	public void setCollectionEar(String collectionEar) {
+		this.collectionEar = collectionEar;
 	}
 }
 	

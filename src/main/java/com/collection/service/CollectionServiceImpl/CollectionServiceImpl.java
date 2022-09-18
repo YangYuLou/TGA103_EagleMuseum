@@ -28,6 +28,7 @@ public class CollectionServiceImpl implements CollectionService {
 			collection.setSuccessful(false);
 			return collection;
 		}
+		dao.insert(collection);
 
 		collection.setMessage("新增成功");
 		collection.setSuccessful(true);
