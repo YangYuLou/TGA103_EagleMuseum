@@ -40,7 +40,9 @@ DROP TABLE IF EXISTS `collection`;
 
 create table collection(
 	collectionID int auto_increment not null comment '館藏ID(主鍵)' primary key,
+    collectionTitle text not null comment '館藏名稱' unique,
     collectionText text not null comment '文字內容',
+	collectionEar text not null comment '時代',
     collectionMaterial varchar(255) comment '材質',
     collectionStatus boolean not null default false comment '館藏上架狀態(預設隱藏)',
     lastUpdateTime datetime not null default now() comment '最後更新時間'
