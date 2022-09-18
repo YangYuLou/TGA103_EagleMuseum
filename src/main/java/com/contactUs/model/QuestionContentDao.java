@@ -9,5 +9,6 @@ public interface QuestionContentDao {
 	Integer insert(QuestionContentVO questionContent);
 	List<QuestionContentVO> selectAll();
 	List<QuestionContentVO> findByMemberId(Integer memberId);
+	List<QuestionContentVO> findByDate(String lastUpdateDate1, String lastUpdateDate2);
 
 }

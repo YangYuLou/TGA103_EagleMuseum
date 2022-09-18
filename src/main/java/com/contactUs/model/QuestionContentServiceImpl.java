@@ -1,5 +1,6 @@
 package com.contactUs.model;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.naming.NamingException;
@@ -50,6 +51,11 @@ public class QuestionContentServiceImpl implements QuestionContentService {
 	@Override
 	public List<QuestionContentVO> getByMemberId(Integer memberId) {
 		return dao.findByMemberId(memberId);
+	}
+
+	@Override
+	public List<QuestionContentVO> getByDate(String lastUpdateDate1, String lastUpdateDate2) {
+		return dao.findByDate(lastUpdateDate1, lastUpdateDate2);
 	}
 
 	

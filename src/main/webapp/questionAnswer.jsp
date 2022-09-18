@@ -5,7 +5,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Home</title>
+<title>questionAnswer</title>
+
+<style>
+.xdsoft_datetimepicker .xdsoft_datepicker {
+	width: 300px; /* width:  300px; */
+}
+
+.xdsoft_datetimepicker .xdsoft_timepicker .xdsoft_time_box {
+	height: 151px; /* height:  151px; */
+}
+</style>
+
 </head>
 <body>
 
@@ -20,11 +31,14 @@
 			<option value = 5>會員問題</option>
 			<option value = 6>其他</option>
 		</select>-->
+
+		<div>搜尋發文日期：</div>
+		<label for="lastUpdateDate1">從:</label> <input name="lastUpdateDate1"
+			id="f_date1" type="text"> <label for="lastUpdateDate2">到:</label>
+		<input name="lastUpdateDate2" id="f_date2" type="text"> <br>
+		<label for="memberId">搜尋會員帳號：</label>  <br> <input name="memberId">
 		<br>
-		<label for="memberId">搜尋會員帳號</label>
-		<input name="memberId">	
-		<br>
-		<textarea id="questionContent" name="questionContent"></textarea>
+		<!-- <textarea id="questionContent" name="questionContent"></textarea> -->
 		<input type="submit">
 	</form>
 	<div>${result}</div>
@@ -57,4 +71,38 @@
 	</table>
 
 </body>
+
+<link rel="stylesheet" type="text/css"
+	href="datetimepicker/jquery.datetimepicker.css" />
+<script src="datetimepicker/jquery.js"></script>
+<script src="datetimepicker/jquery.datetimepicker.full.js"></script>
+
+<script>
+	//日期選擇器
+	$.datetimepicker.setLocale('zh'); // kr ko ja en
+	$(function() {
+		$('#f_date1').datetimepicker({
+			format : 'Y-m-d',
+			onShow : function() {
+				this.setOptions({
+					maxDate : $('#f_date2').val() ? $('#f_date2').val() : false
+				})
+			},
+			timepicker : false
+		});
+
+		$('#f_date2').datetimepicker({
+			format : 'Y-m-d',
+			onShow : function() {
+				this.setOptions({
+					minDate : $('#f_date1').val() ? $('#f_date1').val() : false
+				})
+			},
+			timepicker : false
+		});
+	});
+</script>
+
+
+
 </html>

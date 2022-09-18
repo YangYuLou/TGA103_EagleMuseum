@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,35 @@ public class QuestionContentDaoImpl implements QuestionContentDao {
 		dataSource = (DataSource) new InitialContext().lookup("java:comp/env/jdbc/eaglemuseum");
 	}
 	
+	@Override
+	public List<QuestionContentVO> findByDate(String lastUpdateDate1, String lastUpdateDate2) {
+		String sql = "select * from questionContent where date(lastUpdateTime) between ? and ? ";
+		
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement pstmt = connection.prepareStatement(sql);
+				) {
+				pstmt.setString(1, lastUpdateDate1);
+				pstmt.setString(2, lastUpdateDate2);
+				ResultSet ansrs = pstmt.executeQuery();
+				List<QuestionContentVO> list = new ArrayList<QuestionContentVO>();
+				while (ansrs.next()) {	
+					QuestionContentVO quesCont = new QuestionContentVO();
+					quesCont.setQuestionContentID(ansrs.getInt("questionContentID"));
+					quesCont.setMemberId(ansrs.getInt("memberId"));
+					quesCont.setQuestionTypeID(ansrs.getInt("questionTypeID"));
+					quesCont.setQuestionContent(ansrs.getString("questionContent"));
+					quesCont.setAnswerContent(ansrs.getString("answerContent"));
+					quesCont.setAnswered(ansrs.getBoolean("answered"));
+					quesCont.setLastUpdateTime(ansrs.getTimestamp("lastUpdateTime"));
+					list.add(quesCont);
+				}
+				return list;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+	}
 	
 	@Override
 	public List<QuestionContentVO> findByMemberId(Integer memberId) {
@@ -39,7 +69,7 @@ public class QuestionContentDaoImpl implements QuestionContentDao {
 				quesCont.setQuestionContent(ansrs.getString("questionContent"));
 				quesCont.setAnswerContent(ansrs.getString("answerContent"));
 				quesCont.setAnswered(ansrs.getBoolean("answered"));
-				quesCont.setLastUpdateTime(ansrs.getDate("lastUpdateTime"));
+				quesCont.setLastUpdateTime(ansrs.getTimestamp("lastUpdateTime"));
 				list.add(quesCont);
 			}
 			return list;
@@ -109,7 +139,7 @@ public class QuestionContentDaoImpl implements QuestionContentDao {
 				quesCont.setQuestionContent(rs.getString("questionContent"));
 				quesCont.setAnswerContent(rs.getString("answerContent"));
 				quesCont.setAnswered(rs.getBoolean("answered"));
-				quesCont.setLastUpdateTime(rs.getDate("lastUpdateTime"));
+				quesCont.setLastUpdateTime(rs.getTimestamp("lastUpdateTime"));
 				list.add(quesCont);
 			}
 			return list;
@@ -118,6 +148,9 @@ public class QuestionContentDaoImpl implements QuestionContentDao {
 			return null;
 		}
 	}
+
+
+	
 
 	
 

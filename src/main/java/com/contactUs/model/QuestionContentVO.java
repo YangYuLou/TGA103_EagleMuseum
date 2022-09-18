@@ -1,6 +1,6 @@
 package com.contactUs.model;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class QuestionContentVO {
 
@@ -10,13 +10,13 @@ public class QuestionContentVO {
 	private String questionContent;
 	private String answerContent;
 	private Boolean answered;
-	private Date lastUpdateTime;
+	private Timestamp lastUpdateTime;
 
 	public QuestionContentVO() {
 	}
 
 	public QuestionContentVO(Integer questionContentID, Integer memberId, Integer questionTypeID,
-			String questionContent, String answerContent, Boolean answered, Date lastUpdateTime) {
+			String questionContent, String answerContent, Boolean answered, Timestamp lastUpdateTime) {
 		this.questionContentID = questionContentID;
 		this.memberId = memberId;
 		this.questionTypeID = questionTypeID;
@@ -66,11 +66,11 @@ public class QuestionContentVO {
 		this.answered = answered;
 	}
 
-	public Date getLastUpdateTime() {
+	public Timestamp getLastUpdateTime() {
 		return lastUpdateTime;
 	}
 
-	public void setLastUpdateTime(Date lastUpdateTime) {
+	public void setLastUpdateTime(Timestamp lastUpdateTime) {
 		this.lastUpdateTime = lastUpdateTime;
 	}
 
