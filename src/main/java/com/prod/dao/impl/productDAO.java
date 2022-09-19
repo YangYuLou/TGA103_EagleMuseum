@@ -56,7 +56,6 @@ public class productDAO implements com.prod.dao.intf.productDAO_interface {
 	// 新增商品 還沒加判斷
 	@Override
 	public productVO insert(productVO productVO) throws Exception {
-		// TODO Auto-generated method stub
 		try (Connection con = ds.getConnection(); PreparedStatement pstmt = con.prepareStatement(ProductSQL.Insert);) {
 			System.out.println("有連線喽");
 			try (ResultSet rs = pstmt.executeQuery()) {
@@ -66,6 +65,7 @@ public class productDAO implements com.prod.dao.intf.productDAO_interface {
 				pstmt.setInt(2, productVO.getProdTypeID());
 				pstmt.setInt(3, productVO.getProdPrice());
 				pstmt.setString(4, productVO.getProdDescription());
+				pstmt.setInt(5, productVO.getProdInStock());
 				pstmt.executeUpdate();
 			}
 		}
@@ -75,7 +75,6 @@ public class productDAO implements com.prod.dao.intf.productDAO_interface {
 	// 更新商品資訊
 	@Override
 	public productVO update(productVO productVO) throws Exception {
-		// TODO Auto-generated method stub
 		try (Connection con = ds.getConnection(); PreparedStatement pstmt = con.prepareStatement(ProductSQL.Update);) {
 			System.out.println("有連線喽");
 			try (ResultSet rs = pstmt.executeQuery()) {
@@ -134,7 +133,6 @@ public class productDAO implements com.prod.dao.intf.productDAO_interface {
 
 	@Override
 	public List<productVO> getByProductID(String productID) throws SQLException {
-		// TODO Auto-generated method stub
 		List<productVO> list = new ArrayList<productVO>();
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(ProductSQL.GET_BY_ID);) {
@@ -165,7 +163,6 @@ public class productDAO implements com.prod.dao.intf.productDAO_interface {
 	// 更新商品狀愛
 	@Override
 	public Integer updateStatus(productVO productVO) throws Exception {
-		// TODO Auto-generated method stub
 		try (Connection con = ds.getConnection(); PreparedStatement pstmt = con.prepareStatement(ProductSQL.UpdateStatus);) {
 			System.out.println("有連線喽");
 //		"UPDATE productlist set prodStatus=? where prodTypeID=?";

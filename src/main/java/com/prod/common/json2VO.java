@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class   Commonjson2VO {
+public class   json2VO {
 	
 	public static final Gson GSON = new GsonBuilder().create();
 	

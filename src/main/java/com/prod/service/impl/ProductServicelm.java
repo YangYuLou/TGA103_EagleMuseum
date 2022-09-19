@@ -1,5 +1,8 @@
 package com.prod.service.impl;
 
+import static com.prod.common.json2VO.json2Vo;
+
+import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
 import com.prod.common.Result;
 import com.prod.dao.impl.productDAO;
 import com.prod.service.inft.ProductServicein;
@@ -49,16 +52,36 @@ public class ProductServicelm implements ProductServicein {
 
 	@Override
 	public Result insert(productVO productVO) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			String  ProdName = productVO.getProdName();
+			int	ProdTypeID = productVO.getProdTypeID();
+			int ProdPrice = productVO.getProdPrice();
+			String  ProdDescription = productVO.getProdDescription();
+			int  ProdInStock = productVO.getProdInStock();
+			
+			System.out.println(ProdName);
+			System.out.println(ProdTypeID);
+			System.out.println(ProdPrice);
+			System.out.println(ProdDescription);
+			System.out.println(ProdTypeID);
+			if (ProdName != null && ProdTypeID != 0 && ProdInStock != 0 && ProdName != null && ProdDescription != null) {
+				System.out.println(R.success(DAO.insert(productVO)));
+				return R.success(DAO.insert(productVO));
+			}else {
+				return null;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return R.fail(e.toString());
+		}
 	}
 
 	@Override
 	public Result updateStatus(productVO productVO) {
 		try {
 			System.out.println(R.success(DAO.updateStatus(productVO)));
-//			return R.success(DAO.updateStatus(productVO));
-			return null;
+			return R.success(DAO.insert(productVO));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return R.fail(e.toString());
