@@ -12,7 +12,7 @@ public class ProductSQL {
 
 	//新增商品
 	public static final String Insert  =
-			"INSERT INTO productlist(prodName, ProdTypeID, prodprice, prodDescription, creatTime) VALUES(?, ?, ?, ?, ?)";
+		"INSERT INTO productlist(prodName, ProdTypeID, prodprice, prodDescription, prodInStock, creatTime) VALUES(?, ?, ?, ?, ?,NOW())";
 	
 //	productID, prodName, prodTypeID, prodPrice, discountID, prodDescription, prodStatus, creatTime, launchTime, sellQuantity, prodInStock, bestSeller, lastUpdateTime
 	//更新商品

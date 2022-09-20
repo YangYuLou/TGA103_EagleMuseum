@@ -58,20 +58,17 @@ public class productDAO implements com.prod.dao.intf.productDAO_interface {
 	public productVO insert(productVO productVO) throws Exception {
 		try (Connection con = ds.getConnection(); PreparedStatement pstmt = con.prepareStatement(ProductSQL.Insert);) {
 			System.out.println("有連線喽");
-			try (ResultSet rs = pstmt.executeQuery()) {
-
-//	"INSERT INTO productlist(prodName, ProdTypeID, prodprice, prodDescription, creatTime) VALUES(?, ?, ?, ?, NOW())";
-				pstmt.setString(1, productVO.getProdName());
-				pstmt.setInt(2, productVO.getProdTypeID());
-				pstmt.setInt(3, productVO.getProdPrice());
-				pstmt.setString(4, productVO.getProdDescription());
-				pstmt.setInt(5, productVO.getProdInStock());
-				pstmt.executeUpdate();
-			}
+			pstmt.setString(1, productVO.getProdName());
+			pstmt.setInt(2, productVO.getProdTypeID());
+			pstmt.setInt(3, productVO.getProdPrice());
+			pstmt.setString(4, productVO.getProdDescription());
+			pstmt.setInt(5, productVO.getProdInStock());
+			pstmt.executeUpdate();
 		}
 		return null;
 	}
-
+		
+	
 	// 更新商品資訊
 	@Override
 	public productVO update(productVO productVO) throws Exception {
@@ -101,7 +98,6 @@ public class productDAO implements com.prod.dao.intf.productDAO_interface {
 	// 根據商品名稱查詢
 	@Override
 	public List<productVO> getByName(String productName) throws SQLException {
-		// TODO Auto-generated method stub
 		List<productVO> list = new ArrayList<productVO>();
 		try (Connection con = ds.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(ProductSQL.GET_BY_Name);) {
