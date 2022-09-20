@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+
+	<Resource name="jdbc/eagle_museum"
+		type="javax.sql.DataSource"
+		url="jdbc:mysql://localhost:3306/eagle_museum" 
+		username="root"
+		password="password" 
+		driverClassName="com.mysql.cj.jdbc.Driver"
+		maxActive="8" 
+		maxIdle="4" 
+		maxWait="5000" 
+	/>
+
+</Context>
